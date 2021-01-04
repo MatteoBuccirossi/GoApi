@@ -17,7 +17,9 @@ func main() {
 	})
 	app.Get("/api/:type", func(c *fiber.Ctx) error {
 		fmt.Println(c.Params("type"))
-		return c.SendString("hello world fiber")
+		obj:= make(map[string]string)
+		obj["type"] = c.Params("type")
+		return c.JSON(obj)
 	})
 
 	app.Listen(":3000")
